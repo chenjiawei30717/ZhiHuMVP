@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#fff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="120dp"
+            android:layout_weight="1"
+            android:minHeight="120dp">
+
+            <ImageButton
+                android:id="@+id/phototake_record_voice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/camera"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
+
+            <ImageView
+                android:id="@+id/phototake_record_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/camera"
+                android:visibility="invisible"/>
+
+            <TextView
+                android:id="@+id/phototake_hint_temp"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_below="@id/iv_record_loading"
+                android:layout_marginBottom="35dp"
+                android:gravity="center"
+                android:text="请点击图片开始拍照"
+                android:textColor="#BF3EFF"
+                android:textSize="20dp"/>
+
+
+        </RelativeLayout>
+    </LinearLayout>
+
+</RelativeLayout>

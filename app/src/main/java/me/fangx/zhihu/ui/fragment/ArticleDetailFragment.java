@@ -26,6 +26,7 @@ import me.fangx.common.ui.activity.BaseToolBarActivity;
 import me.fangx.common.util.eventbus.EventCenter;
 import me.fangx.zhihu.R;
 import me.fangx.zhihu.modle.bean.ArticleListBean;
+import me.fangx.zhihu.modle.bean.TestBean;
 import me.fangx.zhihu.utils.DummyContent;
 
 /**
@@ -81,6 +82,9 @@ public class ArticleDetailFragment extends BaseFragment {
             collapsingToolbar.setTitle(articleListBean.getTitle());
             author.setText(articleListBean.getAuthor().getName());
             tv_content.setText(articleListBean.getContent());
+//            collapsingToolbar.setTitle(articleListBean.getCode());
+//            author.setText(articleListBean.getProject());
+//            tv_content.setText(articleListBean.getOperater());
         }
 
         // AppBar的监听
@@ -131,6 +135,10 @@ public class ArticleDetailFragment extends BaseFragment {
         if (!TextUtils.isEmpty(articleListBean.getTitleImage())) {
             backdropImg.setImageURI(Uri.parse(articleListBean.getTitleImage()));
         }
+//        if (!TextUtils.isEmpty(articleListBean.getCode())) {
+////            backdropImg.setImageURI(Uri.parse(articleListBean.getOperater()));
+////            backdropImg.setImageURI(""));
+//        }
     }
 
     @Override
@@ -149,7 +157,7 @@ public class ArticleDetailFragment extends BaseFragment {
         return super.onOptionsItemSelected(item);
     }
 
-    public static ArticleDetailFragment newInstance(ArticleListBean articleListBean) {
+    public static ArticleDetailFragment newInstance(TestBean articleListBean) {
         ArticleDetailFragment fragment = new ArticleDetailFragment();
         Bundle args = new Bundle();
         args.putParcelable(ArticleDetailFragment.ARG_ITEM_INFO, articleListBean);

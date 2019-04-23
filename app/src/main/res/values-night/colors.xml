@@ -39,6 +39,7 @@
     <color name="drawer_collect_coclor">#ffec7530</color>
     <color name="drawer_draft_coclor">#ff6fc624</color>
     <color name="drawer_question_coclor">#fffecb2f</color>
+    <color name="drawer_photo_coclor">#FF00FF</color>
 
     <color name="list_item_title">#fff</color>
     <color name="list_background">#212b30</color>

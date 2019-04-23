@@ -8,6 +8,7 @@
         <item>@string/drawer_collect</item>
         <item>@string/drawer_draft</item>
         <item>@string/drawer_question</item>
+        <item>@string/drawer_photo</item>
     </string-array>
 
     <!-- Nav Drawer List Item Icons -->
@@ -18,7 +19,8 @@
         <item>@drawable/ic_drawer_follow_pressed</item>
         <item>@drawable/ic_drawer_collect_pressed</item>
         <item>@drawable/ic_drawer_draft_pressed</item>
-        <item>@drawable/ic_drawer_question_pressed</item>
+        <item>@drawable/ic_menu_camera</item>
+        <item>@drawable/ic_menu_gallery</item>
     </array>
 
     <array name="nav_drawer_tint">
@@ -28,6 +30,7 @@
         <item>@color/drawer_collect_coclor</item>
         <item>@color/drawer_draft_coclor</item>
         <item>@color/drawer_question_coclor</item>
+        <item>@color/drawer_photo_coclor</item>
 
     </array>
 

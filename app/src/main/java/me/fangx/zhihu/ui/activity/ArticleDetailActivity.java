@@ -9,6 +9,7 @@ import me.fangx.common.util.eventbus.EventCenter;
 import me.fangx.common.util.netstatus.NetUtils;
 import me.fangx.zhihu.R;
 import me.fangx.zhihu.modle.bean.ArticleListBean;
+import me.fangx.zhihu.modle.bean.TestBean;
 import me.fangx.zhihu.ui.fragment.ArticleDetailFragment;
 
 /**
@@ -30,7 +31,7 @@ public class ArticleDetailActivity extends BaseToolBarActivity {
 
     @Override
     protected void initViewsAndEvents() {
-        ArticleDetailFragment fragment = ArticleDetailFragment.newInstance((ArticleListBean) getIntent().getParcelableExtra(ArticleDetailFragment.ARG_ITEM_INFO));
+        ArticleDetailFragment fragment = ArticleDetailFragment.newInstance((TestBean) getIntent().getParcelableExtra(ArticleDetailFragment.ARG_ITEM_INFO));
         getSupportFragmentManager().beginTransaction().replace(R.id.article_detail_container, fragment).commit();
     }
 

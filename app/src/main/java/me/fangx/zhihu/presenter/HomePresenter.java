@@ -1,6 +1,7 @@
 package me.fangx.zhihu.presenter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -56,7 +57,7 @@ public class HomePresenter extends BasePresenter<HomeListView> {
         int offset = (page - 1) * LIMIT;
 
 
-        mSubscription = homeListService.getHomeArticleList(tag, LIMIT, offset)
+        mSubscription = homeListService.getHomeArticleList("6785786")
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .map(new Func1<List<ArticleListBean>, List<ArticleListBean>>() {
@@ -73,11 +74,12 @@ public class HomePresenter extends BasePresenter<HomeListView> {
                 .subscribe(new Observer<List<ArticleListBean>>() {
                     @Override
                     public void onCompleted() {
-
+                        Log.e("onCompleted","onCompleted");
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.e("ERROR",e.getMessage().toString()+"\n"+e.getStackTrace());
                         getMvpView().showError(e.getMessage(), new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -88,6 +90,7 @@ public class HomePresenter extends BasePresenter<HomeListView> {
 
                     @Override
                     public void onNext(List<ArticleListBean> articleListBeanList) {
+                        Log.e("onNext","onNext");
                         if (page == 1) {
                             getMvpView().refresh(articleListBeanList);
                         } else {

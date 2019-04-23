@@ -1,14 +1,17 @@
 package me.fangx.zhihu.ui.activity;
 
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,10 +20,12 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -32,14 +37,26 @@ import me.fangx.common.util.netstatus.NetUtils;
 import me.fangx.zhihu.R;
 import me.fangx.zhihu.adapter.NavDrawerListAdapter;
 import me.fangx.zhihu.modle.bean.NavDrawerItem;
+import me.fangx.zhihu.presenter.ScanPresenter;
 import me.fangx.zhihu.ui.fragment.CollectFragment;
 import me.fangx.zhihu.ui.fragment.DraftFragment;
 import me.fangx.zhihu.ui.fragment.ExploreFragment;
 import me.fangx.zhihu.ui.fragment.FollowFragment;
 import me.fangx.zhihu.ui.fragment.HomeListFragment;
+import me.fangx.zhihu.ui.fragment.PhotoTakeFragment;
 import me.fangx.zhihu.ui.fragment.QuestionFragment;
+import me.fangx.zhihu.ui.fragment.ScanFragment;
+import me.fangx.zhihu.ui.fragment.TestFragment;
 import me.fangx.zhihu.utils.BaseUtil;
 import me.fangx.zhihu.utils.NightModeHelper;
+
+
+import com.yanzhenjie.permission.Action;
+import com.yanzhenjie.permission.AndPermission;
+import com.yanzhenjie.permission.Permission;
+import com.yzq.zxinglibrary.android.CaptureActivity;
+import com.yzq.zxinglibrary.bean.ZxingConfig;
+import com.yzq.zxinglibrary.common.Constant;
 
 /**
  * Created by fangxiao on 15/12/01.
@@ -56,6 +73,7 @@ public class HomeActivity extends BaseAppCompatActivity {
     private DrawerLayout drawerLayout;
     private int position;
 
+    private ScanPresenter scanPresenter;
     @Bind(R.id.home_layout)
     FrameLayout home_layout;
     @Bind(R.id.nv_drawer_layout)
@@ -102,7 +120,9 @@ public class HomeActivity extends BaseAppCompatActivity {
 
     private void init() {
         nightModeHelper = new NightModeHelper(this);
-        user_img.setImageURI(Uri.parse("http://fxblog.oss-cn-beijing.aliyuncs.com/avatar_img.png"));
+//        user_img.setImageURI(Uri.parse("http://fxblog.oss-cn-beijing.aliyuncs.com/avatar_img.png"));
+//        user_img.setImageURI();
+        user_img.setActualImageResource(R.drawable.avatar_img);
     }
 
     private void setupToolbar() {
@@ -157,7 +177,8 @@ public class HomeActivity extends BaseAppCompatActivity {
         });
 
 
-        selectItem(0, mNavDrawerItems.get(0).getTitle());
+//        selectItem(2, mNavDrawerItems.get(2).getTitle());
+        selectItem(5, "点检");
     }
 
 
@@ -255,7 +276,7 @@ public class HomeActivity extends BaseAppCompatActivity {
         switch (position) {
             case 0:
                 //首页
-                fragment = new HomeListFragment();
+                fragment = new ScanFragment();
                 break;
             case 1:
                 //发现
@@ -273,9 +294,17 @@ public class HomeActivity extends BaseAppCompatActivity {
                 //草稿
                 fragment = new DraftFragment();
                 break;
+//            case 5:
+//                //提问
+//                fragment = new TestFragment();
+//                break;
             case 5:
-                //提问
-                fragment = new QuestionFragment();
+                //首页
+                fragment = new TestFragment();
+                break;
+            case 6:
+                //首页
+                fragment = new PhotoTakeFragment();
                 break;
             default:
                 break;
@@ -291,7 +320,6 @@ public class HomeActivity extends BaseAppCompatActivity {
             LogUtil.e("HomeActivity", "Error in creating fragment");
         }
     }
-
 
     /**
      * 主题切换
